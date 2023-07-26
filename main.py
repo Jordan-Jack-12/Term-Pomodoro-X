@@ -48,9 +48,9 @@ while interval_total > 0:
 
     if is_work == True and is_rest == False:
         while time_work > 0:
-            print("========Focus========")
-            print("||    ", print_time(time_work), "   ||")
-            print("=====================")
+            print('\x1b[1;32;40m========Focus======== \x1b[0m')
+            print("\x1b[1;32;40m||    ", print_time(time_work), "   ||\x1b[0m")
+            print("\x1b[1;32;40m=====================\x1b[0m")
             time_work -= 1
             time.sleep(1)
             os.system('cls')
@@ -64,7 +64,7 @@ while interval_total > 0:
     elif is_work == False and is_rest == True:
         if long_break_here == 0:
             while time_long_rest > 0:
-                print("=====Long Break=====")
+                print("=====Long Break======")
                 print("||    ",print_time(time_long_rest), "   ||")
                 print("=====================")
                 time_short_rest -= 1
