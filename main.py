@@ -27,32 +27,38 @@ def print_welcome_text():
 
 # Asking the input for focus time, rest time and interval    
 def input_time_interval():
-    print("Focus time")
-    set_hh_work = int(input("focus (hrs): "))
-    set_mm_work = int(input("focus (min): "))
-    set_ss_work = int(input("focus (sec): "))
-    os.system('cls')
-    print(" short break time")
-    set_mm_short_rest = int(input("short rest (min): "))
-    set_ss_short_rest = int(input("short rest (sec): "))
-    os.system('cls')
-    print(" Long break time ")
-    set_mm_long_rest = int(input("long rest (min): "))
-    set_ss_long_rest = int(input("long rest (sec): "))
-    os.system('cls')
-    print("total interval")
-    set_interval_total = int(input("number of interval : "))
-    os.system('cls')
-    print("long break interval")
-    set_long_break_interval = int(input("long break after ___ interval : "))
-    os.system('cls')
-    print("\/ Confirm the start \/")
-    confirm = input("Start (y/n) :")
-    if confirm == 'y':
-        is_work = True
-    os.system('cls')
+    pass
 
-    interval_total = 2*set_interval_total - 1
+# App start from here
+print_welcome_text()
+input_time_interval()
+
+print("Focus time")
+set_hh_work = int(input("focus (hrs): "))
+set_mm_work = int(input("focus (min): "))
+set_ss_work = int(input("focus (sec): "))
+os.system('cls')
+print(" short break time")
+set_mm_short_rest = int(input("short rest (min): "))
+set_ss_short_rest = int(input("short rest (sec): "))
+os.system('cls')
+print(" Long break time ")
+set_mm_long_rest = int(input("long rest (min): "))
+set_ss_long_rest = int(input("long rest (sec): "))
+os.system('cls')
+print("total interval")
+set_interval_total = int(input("number of interval : "))
+os.system('cls')
+print("long break interval")
+set_long_break_interval = int(input("long break after ___ interval : "))
+os.system('cls')
+print("\/ Confirm the start \/")
+confirm = input("Start (y/n) :")
+if confirm == 'y':
+    is_work = True
+os.system('cls')
+
+interval_total = 2*set_interval_total - 1
 
 # Print time in proper format
 def print_time(sec):
@@ -64,16 +70,12 @@ def save_session():
     time_proper_format = time.strftime('%H:%M:%S', time.gmtime(today_session_seconds))
     today_date = str(date.today())
     write_session = [today_date, time_proper_format]
-    if os.path.isfile('database.csv'):
-        with open('database.csv', 'w') as file:
+    if os.path.isfile('database.csv') == True:
+        with open('database.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(write_session)
     else:
         pass
-
-# App start from here
-print_welcome_text()
-input_time_interval()
 
 while interval_total > 0:
     # initializing values from input
@@ -104,7 +106,7 @@ while interval_total > 0:
                 print("=====Long Break======")
                 print("||    ",print_time(time_long_rest), "   ||")
                 print("=====================")
-                time_short_rest -= 1
+                time_long_rest -= 1
                 time.sleep(1)
                 os.system('cls')
             is_work = True
@@ -133,7 +135,7 @@ save_session()
 def conf_exit():
     confirm_exit = input("Do you want to exit? (y/n) : ")
     if confirm_exit == 'y' or conf_exit == 'Y':
-        break
+        quit()
     elif confirm_exit == 'n' or conf_exit == 'N':
         print_welcome_text()
     else:
